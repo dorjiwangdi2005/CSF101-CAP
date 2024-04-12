@@ -32,14 +32,16 @@ def read_input(input_3_cap1):
 # Space Complexity: O(1)
 
 def calculate_score(rounds):
-    scores = {'A': 1, 'B': 2, 'C': 3,'X': 0, 'Y': 3, 'Z': 6} 
+    scores = {'A': 1, 'B': 2, 'C': 3,} # my scores and its value 
+    decision = {'X': 0, 'Y': 3, 'Z': 6} # the result whether I lost or win or draw
     # writing a dict to store the key and value for rock(A), paper(B), Scissor(C), and lose (X), draw (Y), win(Z)
     
     total_score = 0 # initialize the total score
     
     for i, j in rounds:
-        total_score += scores[i] + scores[j]
+        total_score += scores[i] + decision[j]
     return total_score
+
 
 # Reading the input from the file
 rounds = read_input('input_3_cap1.txt')
