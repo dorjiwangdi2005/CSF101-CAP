@@ -12,45 +12,61 @@
 # https://www.reddit.com/r/PowerShell/comments/zafhdo/advent_of_code_2022_day_2_rock_paper_scissors/
 ################################
 # SOLUTION 
-# Your Solution Score: 49548
+# Solution Score: 49483
+################################
+# overall complexicity;
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 ################################
 
-# This is the function which is used to read the input file given i.e input_3_cap1.txt
+# Complexity for read_input
 # Time Complexity: O(n)
 # Space Complexity: O(n)
 
+# This is the function which is used to read the input file given i.e input_3_cap1.txt
 def read_input(input_3_cap1):
-    result = [] # empty list to store the result 
+    result = [] # empty list to store the result(rounds) data
 
-    with open(input_3_cap1, 'r') as f:
+    with open(input_3_cap1, 'r') as f: # Open the file and read each line
         for line in f: 
-             result.append(line.strip().split())  # Strip and split the line, then add to the list
+             result.append(line.strip().split())  # removes Strip (whitespace) and split the line, then add the list
     return result 
 
-# Function to calculate the score based on the game rules given in the assignment 
+# Complexity for calculate_score
 # Time Complexity: O(n)
 # Space Complexity: O(1)
 
+ # Function to calculate the score based on the game rules given in the assignment
 def calculate_score(rounds):
-    scores = {'A': 1, 'B': 2, 'C': 3,} # my scores and its value 
-    decision = {'X': 0, 'Y': 3, 'Z': 6} # the result whether I lost or win or draw
-    # writing a dict to store the key and value for rock(A), paper(B), Scissor(C), and lose (X), draw (Y), win(Z)
+
+    # this dictionary will show the logic behind the rock-paper-scissor
+    # this are the outcomes of condition based on the given question 
+    score_sum  = { 
+    ('A', 'Y'): 4, ('B', 'Y'): 5, ('C', 'Y'): 6,
+    ('A', 'X'): 3, ('B', 'X'): 1, ('C', 'X'): 2,
+    ('A', 'Z'): 8, ('B', 'Z'): 9, ('C', 'Z'): 7
+    }
     
-    total_score = 0 # initialize the total score
-    
-    for i, j in rounds:
-        total_score += scores[i] + decision[j]
+    # the variable 'total score' will show the total sum and initially it is initializing as 0
+    total_score = 0
+
+    # Iteration over each round and will calculate the total score 
+    for i in rounds:
+        round_key = tuple(i) # converts the round to a tuple to use as a key in the score_sum dictionary
+        # if not used typeError(unhashable type), will come 
+        total_score += score_sum [round_key] # add the score for the round to the total_score
+
     return total_score
+# This is the main execution block in the code 
+if __name__ == "__main__":
+    test1 = "input_3_cap1.txt" # this variable name contains the 'def calculate_score(rounds)' data   
 
-
+# calling the function def
 # Reading the input from the file
-rounds = read_input('input_3_cap1.txt')
+rounds = read_input('input_3_cap1.txt') 
 
 # Calculating the total score
 score = calculate_score(rounds)
 
 # Print the total score
 print(f"The total score is: {score}")
-
-# overall Time Complexity: O(n)
-        # Space Complexity: O(n)
