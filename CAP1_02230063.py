@@ -27,7 +27,7 @@
 def read_input(input_3_cap1):
     result = [] # empty list to store the result(rounds) data
 
-    with open(input_3_cap1, 'r') as f: # Open the file and read each line
+    with    open(input_3_cap1, 'r') as f: # Open the file and read each line
         for line in f: 
              result.append(line.strip().split())  # removes Strip (whitespace) and split the line, then add the list
     return result 
@@ -57,15 +57,13 @@ def calculate_score(rounds):
         total_score += score_sum [round_key] # add the score for the round to the total_score
 
     return total_score
-# This is the main execution block in the code 
-if __name__ == "__main__":
-    test1 = "input_3_cap1.txt" # this variable name contains the 'def calculate_score(rounds)' data   
 
-# calling the function def
-# Reading the input from the file
-rounds = read_input('input_3_cap1.txt') 
+input_file = "input_3_cap1.txt" # assigning the input file in the variable
+# calling the first function read_input with the input file given 
+# Reading the input from the file and storing in the 2nd function "rounds"
+rounds = read_input(input_file) 
 
-# Calculating the total score
+# Calculating the total score by calling the from the rounds and store it in this variable
 score = calculate_score(rounds)
 
 # Print the total score
